@@ -13,6 +13,7 @@ var busMasterPath = busPath + "w1_bus_master1/"
 var busMaster = busMasterPath + "w1_master_slaves"
 var sensorFile = "w1_slave"
 
+// Sensor type
 type Sensor struct {
 	Name string
 }
