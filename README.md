@@ -1,4 +1,4 @@
-# ds18b20 for raspberry
+# ds18b20 for raspberry [![Build Status](https://travis-ci.org/marsu-p/ds18b20.svg?branch=master)](https://travis-ci.org/marsu-p/ds18b20)
 Simple module to get sensor data of ds18b20 sensor(s) on a Raspberry PI (GPIO w1 pin).
 It supports multiple sensors (on bus `w1_bus_master1`) and respects the CRC when reading.
 
