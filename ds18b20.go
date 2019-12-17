@@ -41,7 +41,7 @@ func GetSensors() (sensors []*Sensor, err error) {
 // 33 00 4b 46 ff ff 02 10 f4 : crc=f4 YES
 // 33 00 4b 46 ff ff 02 10 f4 t=25625
 func (s *Sensor) GetTemperature() (temp float64, err error) {
-	data, err := ioutil.ReadFile(busPath + s.Name + "/w1_slave")
+	data, err := ioutil.ReadFile(busPath + s.Name + "/" + sensorFile)
 	if err != nil {
 		return 0.0, fmt.Errorf("failed to read sensor %q: %v", s.Name, err)
 	}

@@ -1,5 +1,6 @@
 # ds18b20 for raspberry
 Simple module to get sensor data of ds18b20 sensor(s) on a Raspberry PI (GPIO w1 pin).
+It supports multiple sensors (on bus `w1_bus_master1`) and respects the CRC when reading.
 
 ## Connect ds18b20
 You'll need to enable onewire interface for this to work.
