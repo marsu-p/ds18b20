@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var testSensors = []string{"28-000000000000", "28-000000000001", "28-000000000002", "28-000000000003", "28-000000000004", "28-000000000005"}
+var testSensors = []string{"28-000000000000", "28-000000000001", "28-000000000002", "28-000000000003", "28-000000000004", "28-000000000005", "28-000000000006"}
 
 func TestMain(m *testing.M) {
 	busPath = "testdata/"
@@ -98,6 +98,11 @@ func TestGetTemperature(t *testing.T) {
 			name:          "Sensor with strange temperature value",
 			sensor:        &Sensor{Name: testSensors[5]},
 			expectedError: "could not extract temperature, parse to float failed",
+		},
+		{
+			name:         "Sensor with below 0 temperature value",
+			sensor:       &Sensor{Name: testSensors[6]},
+			expectedTemp: -5.32,
 		},
 	}
 
