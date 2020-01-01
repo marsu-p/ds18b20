@@ -26,12 +26,18 @@ func GetSensors() (sensors []*Sensor, err error) {
 	}
 
 	for _, sensorName := range strings.Split(string(data), "\n") {
-		if sensorName == "" {
+
+		regex := regexp.MustCompile(`^28-`)
+		if !regex.MatchString(sensorName) {
 			continue
 		}
+
 		sensors = append(sensors, &Sensor{Name: sensorName})
 	}
 
+	if len(sensors) == 0 {
+		return nil, fmt.Errorf("No sensors found")
+	}
 	return sensors, nil
 }
 
@@ -58,8 +64,7 @@ func (s *Sensor) GetTemperature() (temp float64, err error) {
 	}
 
 	// 33 00 4b 46 ff ff 02 10 f4 t=25625
-	regex = regexp.MustCompile(`(?:[0-9a-f]{2} ){9}t=(?P<temperature>-?[0-9]+)`)
-
+	regex = regexp.MustCompile(`(?:[0-9a-f]{2} ){9}t=(-?[0-9]+)`)
 	match := regex.FindStringSubmatch(lines[1])
 	if match == nil {
 		return 0.0, fmt.Errorf("could not extract temperature, regex did not match")

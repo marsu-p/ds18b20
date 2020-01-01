@@ -41,6 +41,11 @@ func TestGetSensors(t *testing.T) {
 			busMaster:     "wrongfile",
 			expectedError: "open wrongfile: no such file or directory",
 		},
+		{
+			name:          "no sensor",
+			busMaster:     "testdata/w1_bus_master1_empty/w1_master_slaves",
+			expectedError: "No sensors found",
+		},
 	}
 
 	for _, testCase := range testCases {
